@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.example.goodluck.utils.FitScreenUtil;
-import com.example.goodluck.utils.StatusBarUtil;
+import com.yinp.tools.utils.FitScreenUtil;
+import com.yinp.tools.utils.StatusBarUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

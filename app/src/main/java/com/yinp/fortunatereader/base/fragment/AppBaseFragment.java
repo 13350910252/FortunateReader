@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.example.goodluck.mvp.CBaseView;
-import com.example.goodluck.utils.FitScreenUtil;
-import com.example.goodluck.utils.StatusBarUtil;
-import com.example.goodluck.web.retrofit.BaseRetrofitData;
+import com.yinp.fortunatereader.mvp.CBaseView;
+import com.yinp.fortunatereader.web.retrofit.BaseRetrofitData;
+import com.yinp.tools.utils.FitScreenUtil;
+import com.yinp.tools.utils.StatusBarUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

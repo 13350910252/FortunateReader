@@ -5,9 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.example.goodluck.mvp.BasePresenter;
-import com.example.goodluck.mvp.CBaseView;
-import com.example.goodluck.web.retrofit.BaseRetrofitData;
+import com.yinp.fortunatereader.mvp.BasePresenter;
+import com.yinp.fortunatereader.mvp.CBaseView;
+import com.yinp.fortunatereader.web.retrofit.BaseRetrofitData;
 
 public abstract class PresenterBaseActivity<T extends ViewBinding,P extends BasePresenter> extends AppBaseActivity<T> implements CBaseView {
     private P presenter;

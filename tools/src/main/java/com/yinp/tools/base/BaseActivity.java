@@ -1,4 +1,4 @@
-package com.yinp.fortunatereader.base.activity;
+package com.yinp.tools.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-import com.example.goodluck.R;
+import com.yinp.tools.R;
 
 /**
  * 初始activity，所有activity都要继承

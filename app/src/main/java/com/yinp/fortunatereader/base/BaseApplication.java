@@ -8,22 +8,16 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.goodluck.utils.Constant;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.xiaomi.channel.commonutils.logger.LoggerInterface;
-import com.xiaomi.mipush.sdk.Logger;
-import com.xiaomi.mipush.sdk.MiPushClient;
 
 import org.xutils.BuildConfig;
 import org.xutils.x;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -76,31 +70,32 @@ public class BaseApplication extends Application {
     /**
      * 小米推送
      */
-    private void initMIPush(){
-        //初始化push推送服务
-        if(shouldInit()) {
-            MiPushClient.registerPush(this, APP_ID, APP_KEY);
-        }
-        //打开Log
-        LoggerInterface newLogger = new LoggerInterface() {
-
-            @Override
-            public void setTag(String tag) {
-                // ignore
-            }
-
-            @Override
-            public void log(String content, Throwable t) {
-                Log.d(TAG, content, t);
-            }
-
-            @Override
-            public void log(String content) {
-                Log.d(TAG, content);
-            }
-        };
-        Logger.setLogger(this, newLogger);
+    private void initMIPush() {
+//        //初始化push推送服务
+//        if(shouldInit()) {
+//            MiPushClient.registerPush(this, APP_ID, APP_KEY);
+//        }
+//        //打开Log
+//        LoggerInterface newLogger = new LoggerInterface() {
+//
+//            @Override
+//            public void setTag(String tag) {
+//                // ignore
+//            }
+//
+//            @Override
+//            public void log(String content, Throwable t) {
+//                Log.d(TAG, content, t);
+//            }
+//
+//            @Override
+//            public void log(String content) {
+//                Log.d(TAG, content);
+//            }
+//        };
+//        Logger.setLogger(this, newLogger);
     }
+
     private boolean shouldInit() {
         ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
         List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
@@ -113,6 +108,7 @@ public class BaseApplication extends Application {
         }
         return false;
     }
+
     private void initBugly() {
         // 获取当前包名
         String packageName = mAppContext.getPackageName();
@@ -188,10 +184,12 @@ public class BaseApplication extends Application {
 //                dir.mkdirs();
 //            }
 //        }
-        File dir = new File(Environment.getExternalStorageDirectory(), Constant.APP_SD_PATH);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
+
+
+//        File dir = new File(Environment.getExternalStorageDirectory(), Constant.APP_SD_PATH);
+//        if (!dir.exists()) {
+//            dir.mkdirs();
+//        }
     }
 
     private static String getProcessName(int pid) {

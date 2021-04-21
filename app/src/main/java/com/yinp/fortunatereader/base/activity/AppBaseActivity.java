@@ -1,16 +1,19 @@
 package com.yinp.fortunatereader.base.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.example.goodluck.R;
-import com.example.goodluck.utils.FitScreenUtil;
-import com.example.goodluck.utils.StatusBarUtil;
+import com.yinp.fortunatereader.R;
+import com.yinp.tools.base.BaseActivity;
+import com.yinp.tools.utils.FitScreenUtil;
+import com.yinp.tools.utils.StatusBarUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,6 +30,7 @@ public abstract class AppBaseActivity<T extends ViewBinding> extends BaseActivit
             isClick = false;
         }
     };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,55 @@ public abstract class AppBaseActivity<T extends ViewBinding> extends BaseActivit
         if (view.getId() == R.id.header_back_img) {
             finish();
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            if (isFastDoubleClick()) {
+                return true;
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    private long lastClickTime = 0;
+
+    public boolean isFastDoubleClick() {
+        long time = System.currentTimeMillis();
+        long timeD = time - lastClickTime;
+        lastClickTime = time;
+        return timeD <= 300;
+    }
+
+    /**
+     * 界面跳转
+     */
+    public void goToActivity(Class clazz) {
+        startActivity(new Intent(this, clazz));
+    }
+
+    /**
+     * 界面跳转
+     */
+    public void goToActivity(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+    }
+
+    /**
+     * 界面跳转
+     */
+    public void goToActivity(Class clazz, Bundle bundle, int requestcode) {
+        Intent intent = new Intent(this, clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivityForResult(intent, requestcode);
     }
 
     /**
