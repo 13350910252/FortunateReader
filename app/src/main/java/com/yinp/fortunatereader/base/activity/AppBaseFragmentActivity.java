@@ -1,7 +1,9 @@
 package com.yinp.fortunatereader.base.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -52,6 +54,54 @@ public abstract class AppBaseFragmentActivity<T extends ViewBinding> extends Bas
     protected abstract void initViews();
     protected void bindData() {
 
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            if (isFastDoubleClick()) {
+                return true;
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    private long lastClickTime = 0;
+
+    public boolean isFastDoubleClick() {
+        long time = System.currentTimeMillis();
+        long timeD = time - lastClickTime;
+        lastClickTime = time;
+        return timeD <= 300;
+    }
+
+    /**
+     * 界面跳转
+     */
+    public void goToActivity(Class clazz) {
+        startActivity(new Intent(this, clazz));
+    }
+
+    /**
+     * 界面跳转
+     */
+    public void goToActivity(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+    }
+
+    /**
+     * 界面跳转
+     */
+    public void goToActivity(Class clazz, Bundle bundle, int requestcode) {
+        Intent intent = new Intent(this, clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivityForResult(intent, requestcode);
     }
 
     /**

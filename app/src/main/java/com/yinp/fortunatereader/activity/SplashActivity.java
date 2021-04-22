@@ -9,25 +9,31 @@ import android.widget.ImageView;
 import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.XXPermissions;
 import com.yinp.fortunatereader.R;
-import com.yinp.fortunatereader.base.activity.AppBaseActivity;
+import com.yinp.fortunatereader.base.activity.AppBaseFragmentActivity;
+import com.yinp.fortunatereader.databinding.ActivitySplashBinding;
+import com.yinp.tools.utils.StatusBarUtil;
 
 import java.util.List;
 
-
-public class SplashActivity extends AppBaseActivity {
+/**
+ * 启动叶面
+ */
+public class SplashActivity extends AppBaseFragmentActivity<ActivitySplashBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        agree();
         initViews();
     }
 
     ImageView iv_splash;
 
-    @Override
+    //    @Override
     protected void initViews() {
+        setStatusBarHeight(StatusBarUtil.getStatusBarHeight(mContext));
         iv_splash = findViewById(R.id.iv_splash);
+
+
+        agree();
     }
 
     private void agree() {
@@ -36,12 +42,8 @@ public class SplashActivity extends AppBaseActivity {
 
     private void applyPermission() {
         XXPermissions.with(this)
-                .permission(new String[]{
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.READ_PHONE_STATE}) //不指定权限则自动获取清单中的危险权限
+                .permission(Manifest.permission.WRITE_EXTERNAL_STORAGE) //不指定权限则自动获取清单中的危险权限
+                .permission(Manifest.permission.READ_PHONE_STATE)
                 .request(new OnPermissionCallback() {
                     @Override
                     public void onGranted(List<String> permissions, boolean all) {
@@ -56,25 +58,6 @@ public class SplashActivity extends AppBaseActivity {
                     }
                 });
     }
-
-//    /**
-//     * 跑应用的逻辑
-//     */
-//    boolean isGo = true;
-//
-//    private void runApp() {
-//        if (isGo) {
-//            isGo = false;
-//            new Thread(() -> {
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e1) {
-//                    e1.printStackTrace();
-//                }
-//                goToActivity(MainActivity.class);
-//            }).start();
-//        }
-//    }
 
     private void initAnimation() {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.4f, 1.0f, 1.4f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f

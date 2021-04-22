@@ -6,12 +6,12 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.hjq.permissions.XXPermissions;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import org.xutils.BuildConfig;
@@ -50,6 +50,8 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        // 当前项目是否已经适配了分区存储的特性
+        XXPermissions.setScopedStorage(true);
         init();
     }
 
@@ -65,6 +67,7 @@ public class BaseApplication extends Application {
         initBmob();
         initBugly();
         initMIPush();
+
     }
 
     /**
@@ -161,9 +164,9 @@ public class BaseApplication extends Application {
      * 初始化存储路径
      */
     private void initPath() {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
-            return;
-        }
+//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
+//            return;
+//        }
 //        /**
 //         * /storage/emulated/0/Android/data/com.example.goodluck/files/images
 //         */
