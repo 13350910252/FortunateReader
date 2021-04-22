@@ -48,7 +48,6 @@ public class SplashActivity extends AppBaseFragmentActivity<ActivitySplashBindin
                     @Override
                     public void onGranted(List<String> permissions, boolean all) {
                         initAnimation();
-
                     }
 
                     @Override
@@ -62,7 +61,7 @@ public class SplashActivity extends AppBaseFragmentActivity<ActivitySplashBindin
     private void initAnimation() {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.4f, 1.0f, 1.4f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f
                 , Animation.RELATIVE_TO_SELF, 0.5f);
-        scaleAnimation.setDuration(2000);
+        scaleAnimation.setDuration(1200);
         scaleAnimation.setFillAfter(true);
         if (iv_splash != null) {
             iv_splash.startAnimation(scaleAnimation);
@@ -77,6 +76,7 @@ public class SplashActivity extends AppBaseFragmentActivity<ActivitySplashBindin
             @Override
             public void onAnimationEnd(Animation animation) {
                 goToActivity(MainActivity.class);
+                finish();
             }
 
             @Override

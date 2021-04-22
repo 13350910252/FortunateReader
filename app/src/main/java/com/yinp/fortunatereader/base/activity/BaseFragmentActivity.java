@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -28,7 +27,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
         getWindow().setExitTransition(enter);//退出
         getWindow().setReenterTransition(enter);//用于决定如果当前Activity已经打开过，并且再次打开该Activity时的动画
         //有截屏攻击风险
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         mActivity = this;
         mContext = this;

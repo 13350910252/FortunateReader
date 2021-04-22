@@ -26,6 +26,10 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<RecyclerView
         this.onItemClickListener = onItemClickListener;
     }
 
+    public CommonAdapter(Context context, List<T> datalist) {
+        this(context, datalist, -1);
+    }
+
     public CommonAdapter(Context context, List<T> datalist, int layoutid) {
         this(context, datalist, layoutid, 0);
     }
@@ -59,13 +63,17 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ComViewHolder viewHolder = null;
+        if (mItemLayoutId == -1) {
+            return setComViewHolder(null, viewType, parent);
+        }
+        viewHolder = setComViewHolder(null, viewType, parent);
         if (headerlayoutid != 0 && viewType == RECYLERHEADTYPE) {
             View view = mInflater.inflate(headerlayoutid, parent, false);
-            viewHolder = setComViewHolder(view, viewType);
+            viewHolder = setComViewHolder(view, viewType, null);
 
         } else {
             View view = mInflater.inflate(mItemLayoutId, parent, false);
-            viewHolder = setComViewHolder(view, viewType);
+            viewHolder = setComViewHolder(view, viewType, null);
             viewHolder.onItemClickListener(onItemClickListener);
         }
 
@@ -73,7 +81,7 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<RecyclerView
 
     }
 
-    protected abstract ComViewHolder setComViewHolder(View view, int viewType);
+    protected abstract ComViewHolder setComViewHolder(View view, int viewType, ViewGroup parent);
 
 
     @Override
