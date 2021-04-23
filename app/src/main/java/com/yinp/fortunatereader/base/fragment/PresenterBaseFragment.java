@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.yinp.fortunatereader.mvp.BasePresenter;
+import com.yinp.fortunatereader.manager.BaseManager;
 
-public abstract class PresenterBaseFragment<T extends ViewBinding, P extends BasePresenter> extends AppBaseFragment<T> {
+public abstract class PresenterBaseFragment<T extends ViewBinding, P extends BaseManager> extends AppBaseFragment<T> {
     protected P presenter;
 
     protected abstract P createPresenter();

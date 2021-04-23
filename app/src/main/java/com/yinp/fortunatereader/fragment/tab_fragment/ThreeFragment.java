@@ -10,4 +10,5 @@ public class ThreeFragment extends AppBaseFragment<FragmentThreeBinding> {
     protected void initViews(View view) {
 
     }
+
 }

@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.yinp.fortunatereader.activity.read.NetReadActivity;
 import com.yinp.fortunatereader.base.fragment.AppBaseFragment;
 import com.yinp.fortunatereader.databinding.FragmentOneBinding;
 import com.yinp.fortunatereader.databinding.ItemBookBinding;
@@ -40,7 +41,8 @@ public class OneFragment extends AppBaseFragment<FragmentOneBinding> {
         }
         initRecycler();
     }
-    private void initRecycler(){
+
+    private void initRecycler() {
         adapter = new CommonAdapter<Integer>(getContext(), dataList) {
             @Override
             protected ComViewHolder setComViewHolder(View view, int viewType, ViewGroup parent) {
@@ -58,6 +60,12 @@ public class OneFragment extends AppBaseFragment<FragmentOneBinding> {
                 }
             }
         };
+        adapter.setOnItemClickListener(new ComViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+                goToActivity(NetReadActivity.class);
+            }
+        });
         StaggeredGridLayoutManager sgl = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         binding.rvList.setLayoutManager(sgl);
         /**

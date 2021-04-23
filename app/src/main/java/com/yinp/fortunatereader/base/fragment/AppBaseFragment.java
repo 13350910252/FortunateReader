@@ -1,5 +1,7 @@
 package com.yinp.fortunatereader.base.fragment;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.yinp.fortunatereader.mvp.CBaseView;
-import com.yinp.fortunatereader.web.retrofit.BaseRetrofitData;
 import com.yinp.tools.utils.FitScreenUtil;
 import com.yinp.tools.utils.StatusBarUtil;
 
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class AppBaseFragment<T extends ViewBinding> extends BaseFragment implements CBaseView {
+public abstract class AppBaseFragment<T extends ViewBinding> extends BaseFragment{
     //记录按下,防止连续点击
     public boolean isClick = false;
     public Runnable runnable = new Runnable() {
@@ -64,24 +64,38 @@ public abstract class AppBaseFragment<T extends ViewBinding> extends BaseFragmen
 
     protected void bindData() {
     }
-
-    @Override
-    public void showLoading() {
-
+    /**
+     * 跳转界面
+     */
+    public void goToActivity(Class clazz) {
+        startActivity(new Intent(getActivity(), clazz));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        }
     }
 
-    @Override
-    public void hideLoading() {
-
+    /**
+     * 跳转界面
+     */
+    public void goToActivity(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(getContext(), clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        }
     }
 
-    @Override
-    public void showError(String msg) {
-
-    }
-
-    @Override
-    public void onErrorCode(BaseRetrofitData model) {
-
+    /**
+     * 跳转界面
+     */
+    public void goToActivity(Class clazz, Bundle bundle, int code) {
+        Intent intent = new Intent(getContext(), clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivityForResult(intent, code);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        }
     }
 }

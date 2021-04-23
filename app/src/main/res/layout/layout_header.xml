@@ -73,7 +73,6 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="ceshi"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:visibility="visible"

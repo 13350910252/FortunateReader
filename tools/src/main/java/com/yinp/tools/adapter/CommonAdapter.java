@@ -64,7 +64,9 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ComViewHolder viewHolder = null;
         if (mItemLayoutId == -1) {
-            return setComViewHolder(null, viewType, parent);
+            viewHolder = setComViewHolder(null, viewType, parent);
+            viewHolder.onItemClickListener(onItemClickListener);
+            return viewHolder;
         }
         viewHolder = setComViewHolder(null, viewType, parent);
         if (headerlayoutid != 0 && viewType == RECYLERHEADTYPE) {

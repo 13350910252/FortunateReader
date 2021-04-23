@@ -1,6 +1,7 @@
 package com.yinp.fortunatereader.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
@@ -36,7 +37,7 @@ public class MainActivity extends AppBaseFragmentActivity<ActivityMainBinding> {
         setStatusBarHeight(StatusBarUtil.getStatusBarHeight(mContext));
         fragmentManager = getSupportFragmentManager();
 
-//        binding.headerLayout.headerBackImg.setVisibility(View.GONE);
+        binding.headerLayout.headerBackImg.setVisibility(View.GONE);
         binding.headerLayout.headerCenterTitle.setText("首页");
         binding.rgBottomGroup.setOnCheckedChangeListener(new CheckedListener());
     }

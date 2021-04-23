@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yinp.tools.shap_view.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:oneBg="@color/white"
+    app:radius="8"
+    app:state="pressed"
+    android:layout_marginStart="@dimen/_10dp"
+    android:layout_marginEnd="@dimen/_10dp"
+    android:layout_marginTop="@dimen/_10dp"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="@dimen/_56dp"
+        android:scaleType="centerCrop"
+        android:layout_height="@dimen/_68dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/_16dp" />
+
+    <LinearLayout
+        android:paddingBottom="@dimen/_4dp"
+        android:paddingTop="@dimen/_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="@dimen/textSize_16sp"
+            tools:text="海泽" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black666"
+            android:textSize="@dimen/textSize_14sp"
+            tools:text="张三  玄幻" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述" />
+    </LinearLayout>
+</com.yinp.tools.shap_view.ShapeLinearLayout>

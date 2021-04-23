@@ -1,20 +1,11 @@
 package com.yinp.fortunatereader.web.retrofit;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiRetrofit {
-    @FormUrlEncoded
-    @POST("user/login")
-    Observable<BaseRetrofitData> accountLogin(@Field("username") String username, @Field("password") String password);
-
-    @GET("banner/json")
-    Observable<BaseRetrofitData> getBannerList();
-
-//    https://www.wanandroid.com/article/list/0/json
-    @GET("article/list/0/json")
-    Observable<BaseRetrofitData> homArticleList();
+//    http://api.pingcc.cn/fiction/search/title/全职高手/1/10
+    @GET("/fiction/search/{option}/{key}/{from}/{size}")
+    Observable<BaseRetrofitData> getNovelList(@Path("option") String option,@Path("key") String key,@Path("from") int from,@Path("size") int size);
 }

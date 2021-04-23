@@ -5,11 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 
-import com.yinp.fortunatereader.mvp.BasePresenter;
-import com.yinp.fortunatereader.mvp.CBaseView;
-import com.yinp.fortunatereader.web.retrofit.BaseRetrofitData;
+import com.yinp.fortunatereader.manager.BaseManager;
 
-public abstract class PresenterBaseActivity<T extends ViewBinding,P extends BasePresenter> extends AppBaseActivity<T> implements CBaseView {
+public abstract class PresenterBaseActivity<T extends ViewBinding,P extends BaseManager> extends AppBaseActivity<T>{
     private P presenter;
 
     protected abstract P createPresenter();
@@ -25,23 +23,4 @@ public abstract class PresenterBaseActivity<T extends ViewBinding,P extends Base
         presenter.detachView();
     }
 
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError(String msg) {
-
-    }
-
-    @Override
-    public void onErrorCode(BaseRetrofitData model) {
-
-    }
 }
