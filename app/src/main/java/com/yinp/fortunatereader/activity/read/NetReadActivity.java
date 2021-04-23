@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,9 +72,26 @@ public class NetReadActivity extends AppBaseFragmentActivity<ActivityNetReadBind
                 };
             }
 
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
                 showTextBinding.tvContent.setText(contentList.get(position));
+                showTextBinding.tvContent.setOnTouchListener((v, event) -> {
+                    int width = (int) AppUtils.getWidthPixels(mContext);
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            int x = (int) event.getRawX();
+                            if (x > width / 3 && x < width / 3 * 2) {
+                                if (mDialogFragment != null && mDialogFragment.isAdded()) {
+                                    mDialogFragment.dismiss();
+                                } else {
+                                    showFunction();
+                                }
+                            }
+                            break;
+                    }
+                    return true;
+                });
             }
 
             @Override
@@ -84,22 +100,6 @@ public class NetReadActivity extends AppBaseFragmentActivity<ActivityNetReadBind
             }
         });
         binding.vpContent.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-        binding.vpContent.setOnTouchListener((v, event) -> {
-            int width = (int) AppUtils.getWidthPixels(mContext);
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    int x = (int) event.getRawX();
-                    if (x > width / 3 && x < width / 3 * 2) {
-                        if (mDialogFragment != null && mDialogFragment.isAdded()) {
-                            mDialogFragment.dismiss();
-                        } else {
-                            showFunction();
-                        }
-                    }
-                    break;
-            }
-            return true;
-        });
     }
 
     /**
@@ -114,12 +114,11 @@ public class NetReadActivity extends AppBaseFragmentActivity<ActivityNetReadBind
 
     private void showFunction() {
         isShow = true;
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //显示状态栏
-        CommonDialogFragment.newInstance(this).setLayoutId(R.layout.dialog_tips).setViewConvertListener(new ViewConvertListener() {
+        CommonDialogFragment.newInstance(this).setLayoutId(R.layout.dialog_novel_control).setViewConvertListener(new ViewConvertListener() {
             @Override
             public void convertView(DialogFragmentHolder holder, BaseDialogFragment dialogFragment) {
                 mDialogFragment = dialogFragment;
             }
-        }).setAnimStyle(R.style.BottomDialogAnimation).show(getSupportFragmentManager());
+        }).setGravity(BaseDialogFragment.BOTTOM).setAnimStyle(R.style.BottomDialogAnimation).show(getSupportFragmentManager());
     }
 }

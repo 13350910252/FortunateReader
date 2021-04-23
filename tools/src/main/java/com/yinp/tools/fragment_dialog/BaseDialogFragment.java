@@ -124,17 +124,20 @@ public abstract class BaseDialogFragment extends DialogFragment {
             if (bottomDy != 0) {
                 layoutParams.y = -bottomDy;
             } else {
-                for (int i = 0; i < gravity.length; i++) {
-                    if (gravity[i] == CENTER) {
-                        layoutParams.y = -dp2px(20);
-                        break;
+                if (gravity != null) {
+                    for (int i = 0; i < gravity.length; i++) {
+                        if (gravity[i] == CENTER) {
+                            layoutParams.y = -dp2px(20);
+                            break;
+                        }
                     }
+                    for (int i = 0; i < gravity.length; i++) {
+                        layoutParams.gravity |= gravity[i];
+                    }
+                } else {
+                    layoutParams.gravity = CENTER;
                 }
             }
-            for (int i = 0; i < gravity.length; i++) {
-                layoutParams.gravity |= gravity[i];
-            }
-
             if (animStyle != -1) {
                 layoutParams.windowAnimations = animStyle;
             }
