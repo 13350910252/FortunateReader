@@ -8,7 +8,7 @@
     <include
         android:id="@+id/header"
         layout="@layout/layout_header"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_content"

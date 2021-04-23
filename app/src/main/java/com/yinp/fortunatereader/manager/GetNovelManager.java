@@ -20,4 +20,8 @@ public class GetNovelManager extends BaseManager {
         addDisposable(BuildRetrofit.getInstance(context, BuildRetrofit.BASE_URL)
                 .getApiRetrofit().getNovelList(option, title, from, size), baseObserver);
     }
+    public void getNovelContent(String chapterId,BaseObserver<BaseRetrofitData> baseObserver){
+        addDisposable(BuildRetrofit.getInstance(context, BuildRetrofit.BASE_URL)
+                .getApiRetrofit().getNovelContent(chapterId), baseObserver);
+    }
 }
